@@ -37,12 +37,12 @@ public class Concurrent {
         int[] array2 = Arrays.copyOf(array, arrayLen);
 
         long start3 = System.nanoTime();
-        new QuickSort(array, 0, arrayLen-1).compute();
+        new QuickSort(array, 0, arrayLen - 1).compute();
         long finish3 = System.nanoTime();
         System.out.println("Sorted " + arrayLen + " ints serially in " + (finish3 - start3) / 1_000_000 + "ms");
 
         long start4 = System.nanoTime();
-        pool.invoke(new QuickSortTask(array2, 0, arrayLen-1));
+        pool.invoke(new QuickSortTask(array2, 0, arrayLen - 1));
         long finish4 = System.nanoTime();
         System.out.println("Sorted " + arrayLen + " ints using fork join in " + (finish4 - start4) / 1_000_000 + "ms");
 
@@ -173,6 +173,7 @@ public class Concurrent {
             }
         }
     }
+
     static class QuickSortTask extends RecursiveAction {
         private final int[] arr;
         private final int left, right;
